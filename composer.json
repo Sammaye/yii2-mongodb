@@ -11,7 +11,7 @@
 	},
 	"require": {
 		"php": ">=5.4.0",
-		"yiisoft/yii2-mongodb": "*",
+		"yiisoft/yii2-mongodb": "*"
 	},
 	"autoload": {
 		"psr-4": {"sammaye\\mongoyii2\\": ""}
