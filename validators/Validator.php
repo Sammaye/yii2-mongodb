@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2\validators;
 
 class Validator extends \yii\validators\Validator
 {
@@ -8,11 +8,11 @@ class Validator extends \yii\validators\Validator
 	 * @var array list of built-in validators (name => class or configuration)
 	 */
 	public static $builtInValidators = [
-		'id' => 'common\components\MongoIdValidator',
+		'id' => 'sammaye\mongoyii2\MongoIdValidator',
 		'boolean' => 'yii\validators\BooleanValidator',
 		'captcha' => 'yii\captcha\CaptchaValidator',
 		'compare' => 'yii\validators\CompareValidator',
-		'date' => 'common\components\DateValidator',
+		'date' => 'sammaye\mongoyii2\DateValidator',
 		'default' => 'yii\validators\DefaultValueValidator',
 		'double' => 'yii\validators\NumberValidator',
 		'email' => 'yii\validators\EmailValidator',
@@ -22,11 +22,11 @@ class Validator extends \yii\validators\Validator
 		'image' => 'yii\validators\ImageValidator',
 		'in' => 'yii\validators\RangeValidator',
 		'integer' => [
-			'class' => 'common\components\NumberValidator',
+			'class' => 'sammaye\mongoyii2\NumberValidator',
 			'integerOnly' => true,
 		],
 		'match' => 'yii\validators\RegularExpressionValidator',
-		'number' => 'common\components\NumberValidator',
+		'number' => 'sammaye\mongoyii2\NumberValidator',
 		'required' => 'yii\validators\RequiredValidator',
 		'safe' => 'yii\validators\SafeValidator',
 		'string' => 'yii\validators\StringValidator',

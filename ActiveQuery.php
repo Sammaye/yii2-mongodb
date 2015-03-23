@@ -15,7 +15,8 @@ class ActiveQuery extends \yii\mongodb\ActiveQuery
 		]);
 	}
 	
-	public function buildCursor($db = null){
+	public function buildCursor($db = null)
+	{
 		return parent::buildCursor($db);
 	}
 	
