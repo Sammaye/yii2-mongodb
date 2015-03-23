@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2;
 
 use Yii;
 use yii\base\Model;

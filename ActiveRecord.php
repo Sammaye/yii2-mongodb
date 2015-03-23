@@ -1,19 +1,17 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2;
 
 use Yii;
 use ArrayObject;
 use yii\base\InvalidConfigException;
 use yii\mongodb\ActiveRecord as MongoActiveRecord;
-use common\components\Subdocument;
-use common\components\ActiveQuery;
-use common\components\Validator;
+use sammaye\mongoyii2\ArraySubdocumentValidator;
+use sammaye\mongoyii2\ActiveQuery;
+use sammaye\mongoyii2\Validator;
 
 class ActiveRecord extends MongoActiveRecord
 {
-	private $_subdocuments = [];
-	
 	public function init()
 	{
 		return parent::init();
@@ -22,11 +20,6 @@ class ActiveRecord extends MongoActiveRecord
 	public static function find()
 	{
 		return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
-	}
-	
-	public function subdocuments()
-	{
-		return [];
 	}
 	
 	/**
@@ -68,9 +61,12 @@ class ActiveRecord extends MongoActiveRecord
 		foreach($attributes as $k => $v){
 			if(is_array($v)){
 				$attributes[$k] = $this->getRawAttributes($v);
-			}elseif($v instanceof Subdocument){
+			}
+			/*
+			elseif($v instanceof Subdocument){
 				$attributes[$k] = $v->getRawAttributes();
 			}
+			*/
 		}
 		return $attributes;
 	}
