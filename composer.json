@@ -1,0 +1,19 @@
+{
+	"name": "sammaye/mongoyii2",
+	"description": "A set of tools for MongoDB awesomeness.",
+	"keywords": ["yii2", "framework", "mongodb", "db", "database", "mongo"],
+	"homepage": "http://www.sammaye.wordpress.com/",
+	"type": "project",
+	"license": "BSD-3-Clause",
+	"support": {
+		"issues": "https://github.com/Sammaye/yii2-mongoyii2/issues",
+		"source": "https://github.com/Sammaye/yii2-mongoyii2"
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"yiisoft/yii2-mongodb": "*",
+	},
+	"autoload": {
+		"psr-4": {"sammaye\\mongoyii2\\": ""}
+	}
+}
