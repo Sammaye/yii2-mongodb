@@ -21,8 +21,8 @@ class Query extends BaseQuery
 		return $this->buildCursor();
 	}
 	
-	public function buildCursor()
+	public function buildCursor($db = null)
 	{
-		return parent::buildCursor();
+		return parent::buildCursor($db);
 	}
 }

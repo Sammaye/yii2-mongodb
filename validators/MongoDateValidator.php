@@ -31,7 +31,7 @@ class MongoDateValidator extends DateValidator
 		if(!$ts){
 			return false;
 		}
-		if($this->useMongoDate){
+		if($this->cast){
 			return new \MongoDate($ts);
 		}else{
 			return $ts;

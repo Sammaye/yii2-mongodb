@@ -49,12 +49,12 @@ class ArrayValidator extends Validator
 			return true;
 		}
 	
-		if($this->min > -1 && $this->min >= count($value)){
+		if($this->min > -1 && $this->min > count($value)){
 			$this->_errors[] = '{attribute} has too few entries.';
 			return false;
 		}
 	
-		if($this->max > -1 && $this->max <= count($value)){
+		if($this->max > -1 && $this->max < count($value)){
 			$this->_errors[] = '{attribute} has too many entries.';
 			return false;
 		}

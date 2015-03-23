@@ -3,7 +3,7 @@
 namespace sammaye\mongoyii2;
 
 use Yii;
-use yii\base\Model;
+use sammaye\mongoyii2\Model;
 use yii\validators\Validator;
 
 class DynamicModel extends Model

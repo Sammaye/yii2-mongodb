@@ -8,11 +8,11 @@ class Validator extends \yii\validators\Validator
 	 * @var array list of built-in validators (name => class or configuration)
 	 */
 	public static $builtInValidators = [
-		'id' => 'sammaye\mongoyii2\MongoIdValidator',
+		'id' => 'sammaye\mongoyii2\validators\MongoIdValidator',
 		'boolean' => 'yii\validators\BooleanValidator',
 		'captcha' => 'yii\captcha\CaptchaValidator',
 		'compare' => 'yii\validators\CompareValidator',
-		'date' => 'sammaye\mongoyii2\DateValidator',
+		'date' => 'sammaye\mongoyii2\validators\DateValidator',
 		'default' => 'yii\validators\DefaultValueValidator',
 		'double' => 'yii\validators\NumberValidator',
 		'email' => 'yii\validators\EmailValidator',
@@ -21,17 +21,17 @@ class Validator extends \yii\validators\Validator
 		'filter' => 'yii\validators\FilterValidator',
 		'image' => 'yii\validators\ImageValidator',
 		'in' => 'sammaye\mongoyii2\validators\RangeValidator',
-		'intInt' => [
+		'inInt' => [
 			'class' => 'sammaye\mongoyii2\validators\RangeValidator',
 			'type' => 'int'
 		],
 		'integer' => [
-			'class' => 'sammaye\mongoyii2\NumberValidator',
+			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
 			'integerOnly' => true,
 		],
 		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
 		'match' => 'yii\validators\RegularExpressionValidator',
-		'number' => 'sammaye\mongoyii2\NumberValidator',
+		'number' => 'sammaye\mongoyii2\validators\NumberValidator',
 		'required' => 'yii\validators\RequiredValidator',
 		'safe' => 'yii\validators\SafeValidator',
 		'string' => 'yii\validators\StringValidator',

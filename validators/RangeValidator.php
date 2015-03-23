@@ -1,8 +1,10 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2\validators;
 
-class RangeValidator extends yii\validators\RangeValidator
+use yii\validators\RangeValidator as BaseRangeValidator;
+
+class RangeValidator extends BaseRangeValidator
 {
 	public $type;
 	

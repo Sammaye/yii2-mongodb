@@ -7,7 +7,7 @@ use ArrayObject;
 use yii\base\InvalidConfigException;
 use yii\mongodb\ActiveRecord as BaseActiveRecord;
 use sammaye\mongoyii2\ActiveQuery;
-use sammaye\mongoyii2\Validator;
+use sammaye\mongoyii2\validators\Validator;
 
 class ActiveRecord extends BaseActiveRecord
 {
