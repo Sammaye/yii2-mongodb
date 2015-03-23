@@ -14,16 +14,30 @@ class IndexController extends Controller
 	
 	public function actionBuild()
 	{
-		$lsla = scandir(Yii::getAlias('@common/models'));
+		$advancedApp = true;
+		if(file_exists(Yii::getAlias('@common/models'))){
+			$lsla = scandir(Yii::getAlias('@common/models'));
+		}else{
+			$advancedApp = false;
+			$lsla = scandir(Yii::getAlias('@app/models'));
+		}
 		
 		foreach($lsla as $item){
 			if(pathinfo($item, PATHINFO_EXTENSION) === 'php'){
 				
 				$this->log('Fetching indexes for: ' . $item);
 				
-				$className = '\common\models\\' . pathinfo($item, PATHINFO_FILENAME);
-				if($className === '\common\models\ResetPasswordForm'){
-					$this->log($item . ' does not have any valid indexes');
+				if($advancedApp){
+					$className = '\common\models\\' . pathinfo($item, PATHINFO_FILENAME);
+				}else{
+					$className = '\app\models\\' . pathinfo($item, PATHINFO_FILENAME);
+				}
+				
+				$reflectionClass = new \ReflectionClass($className);
+				
+				try{
+					$reflectionClass->getMethod('indexes');
+				}catch(\Exception $e){
 					continue;
 				}
 				
@@ -32,7 +46,7 @@ class IndexController extends Controller
 					$this->log($item . ' does not have any valid indexes');
 					continue;
 				}
-				
+					
 				foreach($m->indexes() as $index){
 					if(isset($index[0]) && is_array($index[0])){
 						$this->log('Building Index: ' . print_r($index[0], true));
@@ -48,16 +62,30 @@ class IndexController extends Controller
 	
 	public function actionDrop()
 	{
-		$lsla = scandir(Yii::getAlias('@common\models'));
+		$advancedApp = true;
+		if(file_exists(Yii::getAlias('@common/models'))){
+			$lsla = scandir(Yii::getAlias('@common/models'));
+		}else{
+			$advancedApp = false;
+			$lsla = scandir(Yii::getAlias('@app/models'));
+		}
 		
 		foreach($lsla as $item){
 			if(pathinfo($item, PATHINFO_EXTENSION) === 'php'){
 		
 				$this->log('Fetching indexes for: ' . $item);
 				
-				$className = '\common\models\\' . pathinfo($item, PATHINFO_FILENAME);
-				if($className === '\common\models\ResetPasswordForm'){
-					$this->log($item . ' does not have any valid indexes');
+				if($advancedApp){
+					$className = '\common\models\\' . pathinfo($item, PATHINFO_FILENAME);
+				}else{
+					$className = '\app\models\\' . pathinfo($item, PATHINFO_FILENAME);
+				}
+				
+				$reflectionClass = new \ReflectionClass($className);
+				
+				try{
+					$reflectionClass->getMethod('indexes');
+				}catch(\Exception $e){
 					continue;
 				}
 				
