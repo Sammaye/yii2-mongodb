@@ -1,11 +1,12 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2;
 
 use Yii;
-use common\components\ActiveMongoCursor;
+use yii\mongodb\ActiveQuery as BaseActiveQuery;
+use sammaye\mongoyii2\ActiveMongoCursor;
 
-class ActiveQuery extends \yii\mongodb\ActiveQuery
+class ActiveQuery extends BaseActiveQuery
 {
 	public function each()
 	{

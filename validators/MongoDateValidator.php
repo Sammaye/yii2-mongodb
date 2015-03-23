@@ -1,13 +1,13 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2\validators;
 
 use Yii;
 use yii\validators\DateValidator;
 
 class MongoDateValidator extends DateValidator
 {
-	public $useMongoDate = true;
+	public $cast = true;
 	
 	public function validateAttribute($object, $attribute)
 	{
@@ -15,9 +15,9 @@ class MongoDateValidator extends DateValidator
 		$timestamp = $this->parseDateValue($value);
 		if ($timestamp === false) {
 			$this->addError($object, $attribute, $this->message, []);
-		} elseif ($this->useMongoDate) {
+		}elseif($this->cast){
 			$object->$attribute = $timestamp;
-		} elseif ($this->timestampAttribute !== null) {
+		}elseif($this->timestampAttribute !== null){
 			$object->{$this->timestampAttribute} = $timestamp;
 		}
 	}
@@ -27,13 +27,10 @@ class MongoDateValidator extends DateValidator
 		if($value instanceof \MongoDate){
 			return $value;
 		}
-		
 		$ts = parent::parseDateValue($value);
-		
 		if(!$ts){
 			return false;
 		}
-		
 		if($this->useMongoDate){
 			return new \MongoDate($ts);
 		}else{

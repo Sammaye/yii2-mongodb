@@ -20,11 +20,16 @@ class Validator extends \yii\validators\Validator
 		'file' => 'yii\validators\FileValidator',
 		'filter' => 'yii\validators\FilterValidator',
 		'image' => 'yii\validators\ImageValidator',
-		'in' => 'yii\validators\RangeValidator',
+		'in' => 'sammaye\mongoyii2\validators\RangeValidator',
+		'intInt' => [
+			'class' => 'sammaye\mongoyii2\validators\RangeValidator',
+			'type' => 'int'
+		],
 		'integer' => [
 			'class' => 'sammaye\mongoyii2\NumberValidator',
 			'integerOnly' => true,
 		],
+		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
 		'match' => 'yii\validators\RegularExpressionValidator',
 		'number' => 'sammaye\mongoyii2\NumberValidator',
 		'required' => 'yii\validators\RequiredValidator',

@@ -1,12 +1,14 @@
 <?php
 
-namespace common\components;
+namespace sammaye\mongoyii2\validators;
 
 use Yii;
-use yii\validators\Validator;
+use sammaye\mongoyii2\validators\Validator;
 
 class MongoIdValidator extends Validator
 {
+	public $cast = true;
+	
 	/**
 	 * @inheritdoc
 	 */
@@ -14,10 +16,10 @@ class MongoIdValidator extends Validator
 	{
 		$value = $object->$attribute;
 
-		if (!($id = $this->parseIdValue($value))) {
+		if(!($id = $this->parseIdValue($value))){
 			$this->addError($object, $attribute, $this->message, []);
-		} else {
-			$object->$attribute = $id;
+		}else{
+			$object->$attribute = $this->cast ? $id : (String)$id;
 		}
 	}
 	

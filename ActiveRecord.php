@@ -5,12 +5,11 @@ namespace sammaye\mongoyii2;
 use Yii;
 use ArrayObject;
 use yii\base\InvalidConfigException;
-use yii\mongodb\ActiveRecord as MongoActiveRecord;
-use sammaye\mongoyii2\ArraySubdocumentValidator;
+use yii\mongodb\ActiveRecord as BaseActiveRecord;
 use sammaye\mongoyii2\ActiveQuery;
 use sammaye\mongoyii2\Validator;
 
-class ActiveRecord extends MongoActiveRecord
+class ActiveRecord extends BaseActiveRecord
 {
 	public function init()
 	{
@@ -22,12 +21,6 @@ class ActiveRecord extends MongoActiveRecord
 		return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
 	}
 	
-	/**
-	 * Creates validator objects based on the validation rules specified in [[rules()]].
-	 * Unlike [[getValidators()]], each time this method is called, a new list of validators will be returned.
-	 * @return ArrayObject validators
-	 * @throws InvalidConfigException if any validation rule configuration is invalid
-	 */
 	public function createValidators()
 	{
 		$validators = new ArrayObject;
@@ -62,11 +55,6 @@ class ActiveRecord extends MongoActiveRecord
 			if(is_array($v)){
 				$attributes[$k] = $this->getRawAttributes($v);
 			}
-			/*
-			elseif($v instanceof Subdocument){
-				$attributes[$k] = $v->getRawAttributes();
-			}
-			*/
 		}
 		return $attributes;
 	}

@@ -4,8 +4,9 @@ namespace sammaye\mongoyii2;
 
 use Yii;
 use yii\helpers\Html;
+use \yii\i18n\Formatter as BaseFormatter;
 
-class Formatter extends \yii\i18n\Formatter
+class Formatter extends BaseFormatter
 {
     public function asDate($value, $format = null)
     {

@@ -2,10 +2,11 @@
 
 namespace common\components;
 
-use yii\validators\RangeValidator;
-
-class IntRangeValidator extends RangeValidator
+class RangeValidator extends yii\validators\RangeValidator
 {
+	public $type;
+	
+	
 	/**
 	 * @inheritdoc
 	 */
@@ -15,10 +16,10 @@ class IntRangeValidator extends RangeValidator
 	    
 	    $value = $model->$attribute;
 	    if(!is_array($value)){
-	    	$value = (int)$value;
+	    	$value = $this->format($value);
 	    }else{
 		    array_walk($value, function($item){
-		    	$item = (int)$item;
+		    	$item = $this->format($item);
 		    });
 	    }
 	    $model->$attribute = $value;
@@ -27,5 +28,19 @@ class IntRangeValidator extends RangeValidator
         if (!empty($result)) {
             $this->addError($model, $attribute, $result[0], $result[1]);
         }
+	}
+	
+	public function format($value)
+	{
+		switch($this->type){
+			case "int":
+				return (int)$value;
+			case "string":
+				return (String)$value;
+			case "float":
+				return floatval($value);
+			default:
+				return $value;
+		}
 	}
 }
