@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii2\validators;
+namespace sammaye\mongoyii\validators;
 
 use Yii;
 use yii\validators\DateValidator;

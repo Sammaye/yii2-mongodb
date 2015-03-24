@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii2\helpers;
+namespace sammaye\mongoyii\helpers;
 
 /**
  * A couple of good functions that I wanted to 

@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii2\helpers;
+namespace sammaye\mongoyii\helpers;
 
 class Mongo extends BaseMongo
 {

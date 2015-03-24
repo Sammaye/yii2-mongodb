@@ -1,13 +1,13 @@
 <?php
 
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use Yii;
 use ArrayObject;
 use yii\base\InvalidConfigException;
 use yii\mongodb\ActiveRecord as BaseActiveRecord;
-use sammaye\mongoyii2\ActiveQuery;
-use sammaye\mongoyii2\validators\Validator;
+use sammaye\mongoyii\ActiveQuery;
+use sammaye\mongoyii\validators\Validator;
 
 class ActiveRecord extends BaseActiveRecord
 {

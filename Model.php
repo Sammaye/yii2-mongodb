@@ -1,8 +1,8 @@
 <?php
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use ArrayObject;
-use sammaye\mongoyii2\validators\Validator;
+use sammaye\mongoyii\validators\Validator;
 use yii\base\Model as BaseModel;
 
 class Model extends BaseModel

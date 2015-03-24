@@ -1,9 +1,9 @@
 <?php
 
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use yii\base\Object;
-use sammaye\mongoyii2\MongoCursor;
+use sammaye\mongoyii\MongoCursor;
 
 class ActiveMongoCursor extends MongoCursor implements \Iterator
 {

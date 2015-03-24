@@ -14,6 +14,6 @@
 		"yiisoft/yii2-mongodb": "*"
 	},
 	"autoload": {
-		"psr-4": {"sammaye\\mongoyii2\\": ""}
+		"psr-4": {"sammaye\\mongoyii\\": ""}
 	}
 }

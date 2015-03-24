@@ -1,10 +1,10 @@
 <?php
 
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use Yii;
 use yii\mongodb\Query as BaseQuery;
-use sammaye\mongoyii2\MongoCursor;
+use sammaye\mongoyii\MongoCursor;
 
 class Query extends BaseQuery
 {

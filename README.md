@@ -13,7 +13,7 @@ The formatter, which replaces Yii2's own, provides some standard representations
 
 To use it simply add: 
 
-	'formatter' => ['class' => 'sammaye\mongoyii2\Formatter']
+	'formatter' => ['class' => 'sammaye\mongoyii\Formatter']
 	
 to the `components` section in your configuration file, for example, in `common/config/main.php`.
 
@@ -50,15 +50,15 @@ The `date` formats will use the formatter class you included for this extension 
 
 ### Validators
 
-The most common way to include the validators is to include `sammaye\mongoyii2\ActiveRecord` instead of `yii\mongodb\ActiveRecord` within your models.
+The most common way to include the validators is to include `sammaye\mongoyii\ActiveRecord` instead of `yii\mongodb\ActiveRecord` within your models.
 
 You can also use all validators directly by calling the class, for example: 
 
-	new sammaye\mongoyii2\NumberValidator()
+	new sammaye\mongoyii\NumberValidator()
 	
 or:
 
-	['field', 'sammaye\mongoyii2\NumberValidator'],
+	['field', 'sammaye\mongoyii\NumberValidator'],
 	
 The main change in the validators is that they actually change the model's value. 
 
@@ -73,24 +73,24 @@ So most validators are based upon the principle of making it easy to format (as 
 MongoYii2 contains it's own validator map when you include the `ActiveRecord`. This is, currently, what the extra validators look like:
 
 	public static $builtInValidators = [
-		'id' => 'sammaye\mongoyii2\validators\MongoIdValidator',
-		'date' => 'sammaye\mongoyii2\validators\MongoDateValidator',
-		'in' => 'sammaye\mongoyii2\validators\RangeValidator',
+		'id' => 'sammaye\mongoyii\validators\MongoIdValidator',
+		'date' => 'sammaye\mongoyii\validators\MongoDateValidator',
+		'in' => 'sammaye\mongoyii\validators\RangeValidator',
 		'inInt' => [
-			'class' => 'sammaye\mongoyii2\validators\RangeValidator',
+			'class' => 'sammaye\mongoyii\validators\RangeValidator',
 			'format' => 'int'
 		],
 		'integer' => [
-			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
+			'class' => 'sammaye\mongoyii\validators\NumberValidator',
 			'integerOnly' => true,
 			'format' => 'int'
 		],
 		'float' => [
-			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
+			'class' => 'sammaye\mongoyii\validators\NumberValidator',
 			'format' => 'float'
 		],
-		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
-		'number' => 'sammaye\mongoyii2\validators\NumberValidator',
+		'array' => 'sammaye\mongoyii\validators\ArrayValidator',
+		'number' => 'sammaye\mongoyii\validators\NumberValidator',
 	];
 
 #### Array Validator

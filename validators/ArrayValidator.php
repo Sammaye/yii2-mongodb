@@ -1,10 +1,10 @@
 <?php
 
-namespace sammaye\mongoyii2\validators;
+namespace sammaye\mongoyii\validators;
 
 use Yii;
-use sammaye\mongoyii2\DynamicModel;
-use sammaye\mongoyii2\validators\Validator;
+use sammaye\mongoyii\DynamicModel;
+use sammaye\mongoyii\validators\Validator;
 
 class ArrayValidator extends Validator
 {

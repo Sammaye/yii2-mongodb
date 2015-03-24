@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use Yii;
 use yii\helpers\Html;

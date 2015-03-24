@@ -1,9 +1,9 @@
 <?php
 
-namespace sammaye\mongoyii2;
+namespace sammaye\mongoyii;
 
 use Yii;
-use sammaye\mongoyii2\Model;
+use sammaye\mongoyii\Model;
 use yii\validators\Validator;
 
 class DynamicModel extends Model
