@@ -1,6 +1,6 @@
 # MongoYii2
 
-**This is an extreme beta release, expect maybe a bug or two**
+**Even though I am actively using this on production sites this extension is in extreme beta - expect maybe a bug or two**
 
 This is a set of tools and add-ons built on top of Yii2's own MongoDB extension to further it's capacity and abilities 
 because I found the default MongoDB extension lacked a lot of features needed in programs I made using MongoDB.
@@ -11,13 +11,13 @@ because I found the default MongoDB extension lacked a lot of features needed in
 
 The formatter, which replaces Yii2's own, provides some standard representations of objects, especially `MongoDate`s.
 
-To use it simple add: 
+To use it simply add: 
 
 	'formatter' => ['class' => 'sammaye\mongoyii2\Formatter']
 	
-to your `components` section in your configuration file, for example, in `common/config/main.php`.
+to the `components` section in your configuration file, for example, in `common/config/main.php`.
 
-After you have added it you can define certain fields as certain data types. Let's take an example of defining a `GridView`'s `columns` property:
+After you have added it you can define certain fields as data types. Let's take an example of defining a `GridView`'s `columns` property:
 
 	'columns' => [
 		'_id',
@@ -52,7 +52,7 @@ The `date` formats will use the formatter class you included for this extension 
 
 The most common way to include the validators is to include `sammaye\mongoyii2\ActiveRecord` instead of `yii\mongodb\ActiveRecord` within your models.
 
-You an also use all validators directly by calling the class, for example: 
+You can also use all validators directly by calling the class, for example: 
 
 	new sammaye\mongoyii2\NumberValidator()
 	
@@ -60,22 +60,24 @@ or:
 
 	['field', 'sammaye\mongoyii2\NumberValidator'],
 	
-The main change in the validators is that they actually change the model's value. This is because MongoDB is not type aware within it's own server environment 
-unlike technologies like SQL where you can shove a string into an `int` field and it will convert. However, to complicate things MongoDB IS type aware in it's querying 
+The main change in the validators is that they actually change the model's value. 
+
+This behaviour is because MongoDB is not type aware within it's own server environment unlike technologies like SQL where you can 
+shove a `string` into an `int` field and it will automatically and magically convert. To complicate things MongoDB IS type aware in it's querying 
 and you can only query by the exact same types as what is in the document.
 
 So most validators are based upon the principle of making it easy to format (as well as validate) the return ready for input into MongoDB.
 
 #### Validator Map
 
-MongoYii2 contains it's own validator map when you include the `ActiveRecord`. This is currently what it looks like:
+MongoYii2 contains it's own validator map when you include the `ActiveRecord`. This is, currently, what it looks like:
 
 	public static $builtInValidators = [
 		'id' => 'sammaye\mongoyii2\validators\MongoIdValidator',
 		'boolean' => 'yii\validators\BooleanValidator',
 		'captcha' => 'yii\captcha\CaptchaValidator',
 		'compare' => 'yii\validators\CompareValidator',
-		'date' => 'sammaye\mongoyii2\validators\DateValidator',
+		'date' => 'sammaye\mongoyii2\validators\MongoDateValidator',
 		'default' => 'yii\validators\DefaultValueValidator',
 		'double' => 'yii\validators\NumberValidator',
 		'email' => 'yii\validators\EmailValidator',
@@ -114,7 +116,7 @@ MongoYii2 contains it's own validator map when you include the `ActiveRecord`. T
 
 #### Array Validator
 
-This is designed to allow you to validate very basic subdocuments, simple 1D arrays. You can use it like:
+This is designed to allow you to validate very basic subdocuments, simple 1-dimensional arrays. You can use it like:
 
 	[
 		'array_field',
@@ -131,17 +133,17 @@ Essentially there are 4 properties you need to know about for this validator:
 - `min` which defines a minimum number of elements within the array
 - `max` which does the opposite
 - `required` which defines a required field
-- `rules` which define the rules for the array.
+- `rules` which defines the rules for the array.
 
 All defined rules have the same structure:
 
 	['$', rule_name, params],
 	
-The `$` is always used as denote all elements of the array, currently you cannot target elements directly, for example:
+The `$` is always used to denote all elements of the array, currently you cannot target elements directly, for example:
 
 	[1, rule_name, params],
 	
-This validator will currently batch all errors for the field into a single or set of errors for the field.
+This validator will currently batch all errors for the field the same as Yii2 standard does for a single field.
 
 #### MongoDate Validator
 
@@ -149,7 +151,7 @@ Does exactly the same as Yii2's own `DateValidator` except it can also cast to a
 
 #### MongoId Validator
 
-This checks to see if the value is a MongoId and try and cast it if you have not set the `cast` property to `false`.
+This checks to see if the value is a MongoId and tries to cast it if you have not set the `cast` property to `false`.
 
 #### NumberValidator
 
@@ -167,18 +169,18 @@ These are used as shortcuts for calling the `NumberValidator` with `format` fill
 
 #### RangeValidator
 
-Checks if all values is are in a range of other values and will format it the range if you fill in `format` property. 
+Checks if all values are in a range of other values and will format the range if you fill in the `format` property. 
 It can take an anon function for the `format` property or `int`, `float`, `string` or nothing. Nothing will result in nothing being done to the value. 
 
 This validator can also be called by `inInt` which is a shortcut for calling `['intRange', 'in', 'range' => [1,2,3], 'format' => 'int']`.
 
 ### Active Query Changes
 
-The active query now has the ability to not only stream, via `each()` but also get the raw cursor back:
+The active query now has the ability to not only stream, via `each()`, but also get the raw cursor back:
 
 	User::find()->where(['cheese' => 'cheddar'])->raw()->info(); // gets cursor info
 	
-`each()` will get the cursor and one by one instantiate it and use the cursors own batch methods to pull from MongoDB in your configured `batchSize()` 
+`each()` will get the cursor and, one by one, instantiate the rows as models, using the cursors own batch methods to pull from MongoDB in your configured `batchSize()` 
 (normally 100 rows at a time) instead of using the `all()` or nothing method.
 
 This is especially helpful for large scripts where you could easily run out of memory.
@@ -190,12 +192,12 @@ The indexer allows you to add indexes to MongoDB from your models.
 Currently it will not manage the indexes for you, dropping of indexes is either all or none in the script and you need to use the `mongo` console to do it individually.
 
 To use it simply copy it to your console controller folder, whether it be `console/controllers` or `commands` and edit the first line of the file to change it's namespace and 
-then simply run it.
+then simply run it: `php ./yii index/build`.
 
 It will tell you what it is doing and what indexes it adds. It will search through your models folder and search for any models with the `indexes()` function. Upon reading that 
 function's return it will make indexes for that model.
 
-A good example is:
+A good example of a model's `indexes` function is:
 
 	public function indexes()
 	{
@@ -218,10 +220,10 @@ A good example is:
 			// db.c.ensureIndex({_id: 1,status: 1})
 			['_id' => 1, 'status' => 1],
 			
-			// db.c.ensureIndex({facebook_id: 1})
+			// db.c.ensureIndex({facebook_id: -1})
 			['facebook_id' => -1],
 			
-			// db.c.ensureIndex({google_id: 1})
+			// db.c.ensureIndex({google_id: -1})
 			['google_id' => -1],
 		];
 	}
@@ -246,7 +248,7 @@ Object subdocuments do not work still. So a document of the structure:
 
 will not work automatically with this extension. 
 
-I thought about it long and hard but everything I came up with something I kept wanting to use it differently for each scenario and case I had them.
+I thought about it long and hard but everything I came up with kept needing changes so it could be used differently for each scenario and case I had.
 
 In the end I just ditched what I had and moved on. I added some thoughts on this [thread if someone wants to take it up](https://github.com/yiisoft/yii2/issues/4899).
 
