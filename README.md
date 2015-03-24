@@ -3,7 +3,7 @@
 **This is an extreme beta release, expect maybe a bug or two**
 
 This is a set of tools and add-ons built on top of Yii2's own MongoDB extension to further it's capacity and abilities 
-because I found the default MongoDB extension lacked a lot of features needed in programs I made in MongoDB.
+because I found the default MongoDB extension lacked a lot of features needed in programs I made using MongoDB.
 
 ## Features
 
