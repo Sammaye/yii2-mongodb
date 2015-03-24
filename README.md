@@ -1,6 +1,8 @@
 # MongoYii2
 
-A set of tools and addons bult on top of Yii2's own MongoDB extension to further it's capacity and abilities 
+** This is an extreme beta release, expect maybe a bug or two **
+
+This is a set of tools and add-ons built on top of Yii2's own MongoDB extension to further it's capacity and abilities 
 because I found the default MongoDB extension lacked a lot of features needed in programs I made in MongoDB.
 
 ## Features
@@ -48,7 +50,7 @@ The `date` formats will use the formatter class you included for this extension 
 
 ### Validators
 
-The most common way to inclue the validators is to include `sammaye\mongoyii2\ActiveRecord` instead of `yii\mongodb\ActiveRecord` within your models.
+The most common way to include the validators is to include `sammaye\mongoyii2\ActiveRecord` instead of `yii\mongodb\ActiveRecord` within your models.
 
 You an also use all validators directly by calling the class, for example: 
 
@@ -58,8 +60,8 @@ or:
 
 	['field', 'sammaye\mongoyii2\NumberValidator'],
 	
-The mian change in the validators is that they actually change the model's value. This is because MongoDB is not type aware within it's own server environment 
-unlike technologies like SQL where you can shove a string into an int field and it will convert. However, to complicate things MongoDB IS type aware in it's querying 
+The main change in the validators is that they actually change the model's value. This is because MongoDB is not type aware within it's own server environment 
+unlike technologies like SQL where you can shove a string into an `int` field and it will convert. However, to complicate things MongoDB IS type aware in it's querying 
 and you can only query by the exact same types as what is in the document.
 
 So most validators are based upon the principle of making it easy to format (as well as validate) the return ready for input into MongoDB.
@@ -190,7 +192,7 @@ Currently it will not manage the indexes for you, dropping of indexes is either 
 To use it simply copy it to your console controller folder, whether it be `console/controllers` or `commands` and edit the first line of the file to change it's namespace and 
 then simply run it.
 
-It will tell you what it is doing and what indexes it adds. It will asearch through your models folder and search for any models with the `indexes()` function. Upon reading that 
+It will tell you what it is doing and what indexes it adds. It will search through your models folder and search for any models with the `indexes()` function. Upon reading that 
 function's return it will make indexes for that model.
 
 A good example is:
@@ -244,7 +246,7 @@ Object subdocuments do not work still. So a document of the structure:
 
 will not work automatically with this extension. 
 
-I thought about it long and hard but everything I came up with something I kept wanting to ue it differently for each scenario and case I had object subdocuments.
+I thought about it long and hard but everything I came up with something I kept wanting to use it differently for each scenario and case I had them.
 
 In the end I just ditched what I had and moved on. I added some thoughts on this [thread if someone wants to take it up](https://github.com/yiisoft/yii2/issues/4899).
 
