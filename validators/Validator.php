@@ -23,11 +23,17 @@ class Validator extends \yii\validators\Validator
 		'in' => 'sammaye\mongoyii2\validators\RangeValidator',
 		'inInt' => [
 			'class' => 'sammaye\mongoyii2\validators\RangeValidator',
-			'type' => 'int'
+			'format' => 'int'
 		],
 		'integer' => [
 			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
 			'integerOnly' => true,
+			'format' => 'int'
+		],
+		'float' => [
+			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
+			'integerOnly' => true,
+			'format' => 'float'
 		],
 		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
 		'match' => 'yii\validators\RegularExpressionValidator',

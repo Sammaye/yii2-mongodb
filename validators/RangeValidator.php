@@ -6,7 +6,7 @@ use yii\validators\RangeValidator as BaseRangeValidator;
 
 class RangeValidator extends BaseRangeValidator
 {
-	public $type;
+	public $format;
 	
 	
 	/**
@@ -34,15 +34,19 @@ class RangeValidator extends BaseRangeValidator
 	
 	public function format($value)
 	{
-		switch($this->type){
-			case "int":
-				return (int)$value;
-			case "string":
-				return (String)$value;
-			case "float":
-				return floatval($value);
-			default:
-				return $value;
+		if(is_callable($this->format)){
+			return $this->format($value);
+		}else{
+			switch($this->format){
+				case "int":
+					return (int)$value;
+				case "string":
+					return (String)$value;
+				case "float":
+					return floatval($value);
+				default:
+					return $value;
+			}
 		}
 	}
 }
