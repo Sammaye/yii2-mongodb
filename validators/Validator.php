@@ -32,7 +32,6 @@ class Validator extends \yii\validators\Validator
 		],
 		'float' => [
 			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
-			'integerOnly' => true,
 			'format' => 'float'
 		],
 		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
