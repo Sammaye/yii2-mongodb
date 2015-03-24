@@ -4,7 +4,7 @@ namespace sammaye\mongoyii2;
 
 use Yii;
 use yii\helpers\Html;
-use \yii\i18n\Formatter as BaseFormatter;
+use yii\i18n\Formatter as BaseFormatter;
 
 class Formatter extends BaseFormatter
 {
