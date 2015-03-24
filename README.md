@@ -60,7 +60,7 @@ or:
 
 #### Validator Map
 
-MongoYii2 contains it's own validator map when you include the `ActiveRecord`. This currently what it looks like:
+MongoYii2 contains it's own validator map when you include the `ActiveRecord`. This is currently what it looks like:
 
 	public static $builtInValidators = [
 		'id' => 'sammaye\mongoyii2\validators\MongoIdValidator',
