@@ -57,6 +57,11 @@ You an also use all validators directly by calling the class, for example:
 or:
 
 	['field', 'sammaye\mongoyii2\NumberValidator'],
+	
+The mian change in the validators is that they actually change the model's value. This is because MOngoDB is not type aware within it's own server environment 
+unlike technologies like SQL where you can shove a string into an int field and it will convert.
+
+So most validators are based upon the principle of making it easy to format (as well as validate) the return ready for input into MongoDB.
 
 #### Validator Map
 
