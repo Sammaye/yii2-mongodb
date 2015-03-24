@@ -59,7 +59,8 @@ or:
 	['field', 'sammaye\mongoyii2\NumberValidator'],
 	
 The mian change in the validators is that they actually change the model's value. This is because MongoDB is not type aware within it's own server environment 
-unlike technologies like SQL where you can shove a string into an int field and it will convert.
+unlike technologies like SQL where you can shove a string into an int field and it will convert. However, to complicate things MongoDB IS type aware in it's querying 
+and you can only query by the exact same types as what is in the document.
 
 So most validators are based upon the principle of making it easy to format (as well as validate) the return ready for input into MongoDB.
 
