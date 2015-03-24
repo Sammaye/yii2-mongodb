@@ -92,7 +92,6 @@ MongoYii2 contains it's own validator map when you include the `ActiveRecord`. T
 		],
 		'float' => [
 			'class' => 'sammaye\mongoyii2\validators\NumberValidator',
-			'integerOnly' => true,
 			'format' => 'float'
 		],
 		'array' => 'sammaye\mongoyii2\validators\ArrayValidator',
