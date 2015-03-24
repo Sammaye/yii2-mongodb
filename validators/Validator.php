@@ -12,7 +12,7 @@ class Validator extends \yii\validators\Validator
 		'boolean' => 'yii\validators\BooleanValidator',
 		'captcha' => 'yii\captcha\CaptchaValidator',
 		'compare' => 'yii\validators\CompareValidator',
-		'date' => 'sammaye\mongoyii2\validators\DateValidator',
+		'date' => 'sammaye\mongoyii2\validators\MongoDateValidator',
 		'default' => 'yii\validators\DefaultValueValidator',
 		'double' => 'yii\validators\NumberValidator',
 		'email' => 'yii\validators\EmailValidator',
