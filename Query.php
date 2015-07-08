@@ -8,6 +8,13 @@ use sammaye\mongoyii\MongoCursor;
 
 class Query extends BaseQuery
 {
+	public $options;
+
+	public function addOption($key, $value)
+	{
+		$this->options[$key] = $value;
+	}
+
 	public function each()
 	{
 		return Yii::createObject([
@@ -15,14 +22,30 @@ class Query extends BaseQuery
 			'query' => $this
 		]);
 	}
-	
+
 	public function raw()
 	{
 		return $this->buildCursor();
 	}
-	
-	public function buildCursor($db = null)
+
+	/**
+	 * Builds the Mongo cursor for this query.
+	 * @param Connection $db the database connection used to execute the query.
+	 * @return \MongoCursor mongo cursor instance.
+	 */
+	protected function buildCursor($db = null)
 	{
-		return parent::buildCursor($db);
+		$cursor = $this->getCollection($db)->find($this->composeCondition(), $this->composeSelectFields());
+		if (!empty($this->orderBy)) {
+			$cursor->sort($this->composeSort());
+		}
+		$cursor->limit($this->limit);
+		$cursor->skip($this->offset);
+
+		foreach($this->options as $k => $v){
+			$cursor->addOption($k, $v);
+		}
+
+		return $cursor;
 	}
 }
