@@ -23,11 +23,6 @@ class ActiveQuery extends BaseActiveQuery
 		]);
 	}
 
-	public function buildCursor($db = null)
-	{
-		return parent::buildCursor($db);
-	}
-
 	public function raw()
 	{
 		return $this->buildCursor();
