@@ -33,7 +33,7 @@ class Query extends BaseQuery
 	 * @param Connection $db the database connection used to execute the query.
 	 * @return \MongoCursor mongo cursor instance.
 	 */
-	protected function buildCursor($db = null)
+	public function buildCursor($db = null)
 	{
 		$cursor = $this->getCollection($db)->find($this->composeCondition(), $this->composeSelectFields());
 		if (!empty($this->orderBy)) {
