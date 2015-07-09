@@ -48,4 +48,49 @@ class ActiveQuery extends BaseActiveQuery
 
 		return $cursor;
 	}
+
+	/**
+	 * Composes condition from raw [[where]] value.
+	 * @return array conditions.
+	 */
+	private function composeCondition()
+	{
+		if ($this->where === null) {
+			return [];
+		} else {
+			return $this->where;
+		}
+	}
+
+	/**
+	 * Composes select fields from raw [[select]] value.
+	 * @return array select fields.
+	 */
+	private function composeSelectFields()
+	{
+		$selectFields = [];
+		if (!empty($this->select)) {
+			foreach ($this->select as $key => $value) {
+				if (is_numeric($key)) {
+					$selectFields[$value] = true;
+				} else {
+					$selectFields[$key] = $value;
+				}
+			}
+		}
+		return $selectFields;
+	}
+
+	/**
+	 * Composes sort specification from raw [[orderBy]] value.
+	 * @return array sort specification.
+	 */
+	private function composeSort()
+	{
+		$sort = [];
+		foreach ($this->orderBy as $fieldName => $sortOrder) {
+			$sort[$fieldName] = $sortOrder === SORT_DESC ? \MongoCollection::DESCENDING : \MongoCollection::ASCENDING;
+		}
+		return $sort;
+	}
 }
