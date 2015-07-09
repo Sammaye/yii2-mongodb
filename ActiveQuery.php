@@ -8,7 +8,7 @@ use sammaye\mongoyii\ActiveMongoCursor;
 
 class ActiveQuery extends BaseActiveQuery
 {
-	public $options;
+	public $options = [];
 
 	public function addOption($key, $value)
 	{
