@@ -5,12 +5,19 @@ namespace sammaye\mongoyii;
 use Yii;
 use sammaye\mongoyii\Model;
 use yii\validators\Validator;
+use yii\db\ActiveQueryInterface;
 
 class DynamicModel extends Model
 {
+	public $_className;
+
+
 	private $_rules = [];
 	private $_names = [];
 	private $_attributes = [];
+	private $_relations = [];
+
+	private $_related = [];
 
 	public function __construct(array $attributes = [], $config = [])
 	{
@@ -33,6 +40,13 @@ class DynamicModel extends Model
 		if($this->hasAttribute($name)){
 			return $this->_attributes[$name];
 		}else{
+			if (isset($this->_related[$name]) || array_key_exists($name, $this->_related)) {
+				return $this->_related[$name];
+			}
+			if($value = $this->getRelation($name, false)) {
+				$this->_related[$name] = $value->findFor($name, $this);
+				return $this->_related[$name];
+			}
 			return parent::__get($name);
 		}
 	}
@@ -64,6 +78,14 @@ class DynamicModel extends Model
 		}
 	}
 
+	public function formName()
+	{
+		if($this->_className){
+			return $this->_className;
+		}
+		return parent::formName();
+	}
+
 	public function hasAttribute($name)
 	{
 		return isset($this->_attributes[$name]) || in_array($name, $this->attributes());
@@ -86,6 +108,72 @@ class DynamicModel extends Model
 	public function clearAttributes()
 	{
 		$this->_attributes = [];
+	}
+
+	public function hasOne($class, $link)
+	{
+		/* @var $class ActiveRecordInterface */
+		/* @var $query ActiveQuery */
+		$query = $class::find();
+		$query->primaryModel = $this;
+		$query->link = $link;
+		$query->multiple = false;
+		return $query;
+	}
+
+	public function hasMany($class, $link)
+	{
+		/* @var $class ActiveRecordInterface */
+		/* @var $query ActiveQuery */
+		$query = $class::find();
+		$query->primaryModel = $this;
+		$query->link = $link;
+		$query->multiple = true;
+		return $query;
+	}
+
+	public function relations($relations)
+	{
+		foreach($relations as $k => $rel){
+			$this->addRelation($k, $rel[0], $rel[1], $rel[2]);
+		}
+	}
+
+	public function addRelation($name, $type, $class, $link)
+	{
+		$this->_relations[$name] = [$type, $class, $link];
+	}
+
+	public function getRelation($name, $throwException = true)
+	{
+		// the relation could be defined in a behavior
+		list($type, $class, $link) = $this->_relations[$name];
+		$relation = $this->$type($class, $link);
+
+		if (!$relation instanceof ActiveQueryInterface) {
+			if ($throwException) {
+				throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".');
+			} else {
+				return null;
+			}
+		}
+
+		return $relation;
+	}
+
+	public function populateRelation($name, $records)
+	{
+		$this->_related[$name] = $records;
+	}
+
+	public function isRelationPopulated($name)
+	{
+		return array_key_exists($name, $this->_related);
+	}
+
+	public function getRelatedRecords()
+	{
+		return $this->_related;
 	}
 
 	public function rules($rules = null)
