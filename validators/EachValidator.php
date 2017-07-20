@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace sammaye\mongoyii\validators;
+namespace sammaye\mongodb\validators;
 
 use Yii;
 use yii\validators\EachValidator as BaseEachValidator;

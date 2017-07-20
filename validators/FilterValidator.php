@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii\validators;
+namespace sammaye\mongodb\validators;
 
 use yii\validators\FilterValidator as BaseFilterValidator;
 

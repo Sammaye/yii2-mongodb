@@ -1,8 +1,8 @@
 <?php
 
-namespace sammaye\mongoyii;
+namespace sammaye\mongodb;
 
-use common\components\mongodb\validators\Validator;
+use sammaye\mongodb\validators\Validator;
 use yii\base\Model as BaseModel;
 
 class Model extends BaseModel

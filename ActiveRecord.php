@@ -1,6 +1,6 @@
 <?php
 
-namespace sammaye\mongoyii;
+namespace sammaye\mongodb;
 
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Regex;
@@ -8,7 +8,7 @@ use MongoDB\BSON\UTCDateTime;
 
 use Yii;
 use yii2tech\embedded\mongodb\ActiveRecord as BaseActiveRecord;
-use common\components\mongodb\validators\Validator;
+use sammaye\mongodb\validators\Validator;
 use yii\data\ActiveDataProvider;
 
 class ActiveRecord extends BaseActiveRecord

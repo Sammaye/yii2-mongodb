@@ -1,20 +1,29 @@
 {
-	"name": "sammaye/mongoyii2",
-	"description": "A set of tools for MongoDB awesomeness.",
-	"keywords": ["yii2", "framework", "mongodb", "db", "database", "mongo"],
-	"homepage": "http://www.sammaye.wordpress.com/",
-	"type": "project",
-	"license": "BSD-3-Clause",
-	"support": {
-		"issues": "https://github.com/Sammaye/yii2-mongoyii2/issues",
-		"source": "https://github.com/Sammaye/yii2-mongoyii2"
-	},
-	"require": {
-		"php": ">=5.4.0",
-		"yiisoft/yii2-mongodb": "*",
-		"yii2tech/embedded": "^1.0"
-	},
-	"autoload": {
-		"psr-4": {"sammaye\\mongoyii\\": ""}
-	}
+  "name": "sammaye/yii2-mongodb",
+  "description": "A set of tools for MongoDB awesomeness.",
+  "keywords": [
+    "yii2",
+    "framework",
+    "mongodb",
+    "db",
+    "database",
+    "mongo"
+  ],
+  "homepage": "https://sammaye.com/",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/Sammaye/yii2-mongodb/issues",
+    "source": "https://github.com/Sammaye/yii2-mongodb"
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2-mongodb": "*",
+    "yii2tech/embedded": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "sammaye\\mongodb\\": ""
+    }
+  }
 }

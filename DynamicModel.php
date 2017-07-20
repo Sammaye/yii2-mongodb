@@ -5,9 +5,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace sammaye\mongoyii;
+namespace sammaye\mongodb;
 
-use common\components\mongodb\validators\Validator;
+use sammaye\mongodb\validators\Validator;
 use yii\base\DynamicModel as BaseDynamicModel;
 
 class DynamicModel extends BaseDynamicModel
