@@ -2,17 +2,19 @@
 namespace sammaye\mongodb\validators;
 
 use Yii;
-use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
-use yii\validators\RangeValidator as BaseRangeValidator;
+use yii\validators\BooleanValidator as BaseBooleanValidator;
 
-class RangeValidator extends BaseRangeValidator
+class BooleanValidator extends BaseBooleanValidator
 {
     public $filter;
 
     public function validateAttribute($model, $attribute)
     {
-        parent::validateAttribute($model, $attribute);
+        $result = $this->validateValue($model->$attribute);
+        if (!empty($result)) {
+            $this->addError($model, $attribute, $result[0], $result[1]);
+        }
+
         if ($this->filter) {
             $value = $model->$attribute;
             foreach ($value as $k => $v) {
@@ -20,5 +22,10 @@ class RangeValidator extends BaseRangeValidator
             }
             $model->$attribute = $value;
         }
+    }
+
+    protected function validateValue($value)
+    {
+        return parent::validateValue($value);
     }
 }

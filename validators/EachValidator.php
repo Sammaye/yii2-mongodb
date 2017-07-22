@@ -1,10 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
 namespace sammaye\mongodb\validators;
 
 use Yii;
@@ -73,9 +67,6 @@ class EachValidator extends BaseEachValidator
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function validateAttribute($model, $attribute)
     {
         $value = $model->$attribute;
@@ -147,9 +138,6 @@ class EachValidator extends BaseEachValidator
         $model->addErrors([$attribute => $detectedErrors]);
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function validateValue($value)
     {
         if (is_string($value)) {

@@ -11,42 +11,45 @@ class Validator extends BaseValidator
             'class' => 'yii\mongodb\validators\MongoIdValidator',
             'forceFormat' => 'object'
         ],
-        'boolean' => 'yii\validators\BooleanValidator',
+        'boolean' => [
+            'class' => 'sammaye\mongodb\validators\BooleanValidator',
+            'filter' => 'intval'
+        ],
         'captcha' => 'yii\captcha\CaptchaValidator',
         'compare' => 'yii\validators\CompareValidator',
         'date' => 'yii\mongodb\validators\MongoDateValidator',
         'datetime' => [
-            'class' => 'yii\validators\DateValidator',
+            'class' => 'yii\mongodb\validators\DateValidator',
             'type' => DateValidator::TYPE_DATETIME,
         ],
         'time' => [
-            'class' => 'yii\validators\DateValidator',
+            'class' => 'yii\mongodb\validators\DateValidator',
             'type' => DateValidator::TYPE_TIME,
         ],
         'default' => 'yii\validators\DefaultValueValidator',
         'double' => 'yii\validators\NumberValidator',
-        'each' => 'common\components\mongodb\validators\EachValidator',
+        'each' => 'sammaye\mongodb\validators\EachValidator',
         'email' => 'yii\validators\EmailValidator',
         'exist' => 'yii\validators\ExistValidator',
         'file' => 'yii\validators\FileValidator',
-        'filter' => 'common\components\mongodb\validators\FilterValidator',
+        'filter' => 'sammaye\mongodb\validators\FilterValidator',
         'image' => 'yii\validators\ImageValidator',
-        'in' => 'common\components\mongodb\validators\RangeValidator',
+        'in' => 'sammaye\mongodb\validators\RangeValidator',
         'inInt' => [
-            'class' => 'common\components\mongodb\validators\RangeValidator',
+            'class' => 'sammaye\mongodb\validators\RangeValidator',
             'filter' => 'intval'
         ],
         'integer' => [
-            'class' => 'common\components\mongodb\validators\NumberValidator',
+            'class' => 'sammaye\mongodb\validators\NumberValidator',
             'integerOnly' => true,
             'fitler' => 'intval'
         ],
         'float' => [
-            'class' => 'common\components\mongodb\validators\NumberValidator',
+            'class' => 'sammaye\mongodb\validators\NumberValidator',
             'format' => 'floatval'
         ],
         'match' => 'yii\validators\RegularExpressionValidator',
-        'number' => 'common\components\mongodb\validators\NumberValidator',
+        'number' => 'sammaye\mongodb\validators\NumberValidator',
         'required' => 'yii\validators\RequiredValidator',
         'safe' => 'yii\validators\SafeValidator',
         'string' => 'yii\validators\StringValidator',
