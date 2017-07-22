@@ -1,4 +1,5 @@
 <?php
+
 namespace sammaye\mongodb\validators;
 
 use Yii;
@@ -6,21 +7,23 @@ use yii\validators\BooleanValidator as BaseBooleanValidator;
 
 class BooleanValidator extends BaseBooleanValidator
 {
-    public $filter;
+    public $type = 'int';
 
     public function validateAttribute($model, $attribute)
     {
         $result = $this->validateValue($model->$attribute);
         if (!empty($result)) {
             $this->addError($model, $attribute, $result[0], $result[1]);
+            return false;
         }
 
-        if ($this->filter) {
-            $value = $model->$attribute;
-            foreach ($value as $k => $v) {
-                $value[$k] = call_user_func($this->filter, $value);
-            }
-            $model->$attribute = $value;
+        $val = (int)$model->$attribute;
+        if ($this->type === 'int') {
+            $model->$attribute = $val;
+        } elseif ($val) {
+            $model->$attribute = true;
+        } else {
+            $model->$attribute = false;
         }
     }
 

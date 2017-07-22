@@ -11,10 +11,7 @@ class Validator extends BaseValidator
             'class' => 'yii\mongodb\validators\MongoIdValidator',
             'forceFormat' => 'object'
         ],
-        'boolean' => [
-            'class' => 'sammaye\mongodb\validators\BooleanValidator',
-            'filter' => 'intval'
-        ],
+        'boolean' => 'sammaye\mongodb\validators\BooleanValidator',
         'captcha' => 'yii\captcha\CaptchaValidator',
         'compare' => 'yii\validators\CompareValidator',
         'date' => 'yii\mongodb\validators\MongoDateValidator',
