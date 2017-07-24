@@ -40,7 +40,7 @@ class Validator extends BaseValidator
         'integer' => [
             'class' => 'sammaye\mongodb\validators\NumberValidator',
             'integerOnly' => true,
-            'fitler' => 'intval'
+            'filter' => 'intval'
         ],
         'float' => [
             'class' => 'sammaye\mongodb\validators\NumberValidator',
