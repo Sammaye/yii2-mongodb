@@ -44,7 +44,7 @@ class Validator extends BaseValidator
         ],
         'float' => [
             'class' => 'sammaye\mongodb\validators\NumberValidator',
-            'format' => 'floatval'
+            'filter' => 'floatval'
         ],
         'match' => 'yii\validators\RegularExpressionValidator',
         'number' => 'sammaye\mongodb\validators\NumberValidator',
