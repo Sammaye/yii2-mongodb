@@ -14,11 +14,7 @@ class RangeValidator extends BaseRangeValidator
     {
         parent::validateAttribute($model, $attribute);
         if ($this->filter) {
-            $value = $model->$attribute;
-            foreach ($value as $k => $v) {
-                $value[$k] = call_user_func($this->filter, $value);
-            }
-            $model->$attribute = $value;
+            $model->$attribute = call_user_func($this->filter, $model->$attribute);
         }
     }
 }

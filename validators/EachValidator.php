@@ -3,7 +3,6 @@ namespace sammaye\mongodb\validators;
 
 use Yii;
 use yii\validators\EachValidator as BaseEachValidator;
-use common\components\mongodb\validators\Validator;
 
 class EachValidator extends BaseEachValidator
 {
@@ -80,7 +79,7 @@ class EachValidator extends BaseEachValidator
             return;
         }
 
-        if (count($value) > $this->min) {
+        if ($this->min && count($value) < $this->min) {
             $this->addError(
                 $model,
                 $attribute,
@@ -90,7 +89,7 @@ class EachValidator extends BaseEachValidator
             return;
         }
 
-        if (count($value) > $this->max) {
+        if ($this->max && count($value) > $this->max) {
             $this->addError(
                 $model,
                 $attribute,
@@ -100,13 +99,7 @@ class EachValidator extends BaseEachValidator
             return;
         }
 
-        if (!is_array($value)) {
-            $this->addError($model, $attribute, $this->message, []);
-            return;
-        }
-
         $validator = $this->getValidator($model); // ensure model context while validator creation
-
         $detectedErrors = $model->getErrors($attribute);
         $filteredValue = $model->$attribute;
         foreach ($value as $k => $v) {
@@ -185,4 +178,3 @@ class EachValidator extends BaseEachValidator
         return null;
     }
 }
-
