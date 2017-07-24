@@ -30,7 +30,7 @@ class Validator extends BaseValidator
         'email' => 'yii\validators\EmailValidator',
         'exist' => 'yii\validators\ExistValidator',
         'file' => 'yii\validators\FileValidator',
-        'filter' => 'sammaye\mongodb\validators\FilterValidator',
+        'filter' => 'yii\validators\FilterValidator',
         'image' => 'yii\validators\ImageValidator',
         'in' => 'sammaye\mongodb\validators\RangeValidator',
         'inInt' => [
