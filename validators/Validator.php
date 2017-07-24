@@ -2,6 +2,7 @@
 
 namespace sammaye\mongodb\validators;
 
+use yii\mongodb\validators\MongoDateValidator;
 use yii\validators\Validator as BaseValidator;
 
 class Validator extends BaseValidator
@@ -16,12 +17,12 @@ class Validator extends BaseValidator
         'compare' => 'yii\validators\CompareValidator',
         'date' => 'yii\mongodb\validators\MongoDateValidator',
         'datetime' => [
-            'class' => 'yii\mongodb\validators\DateValidator',
-            'type' => DateValidator::TYPE_DATETIME,
+            'class' => 'yii\mongodb\validators\MongoDateValidator',
+            'type' => MongoDateValidator::TYPE_DATETIME,
         ],
         'time' => [
-            'class' => 'yii\mongodb\validators\DateValidator',
-            'type' => DateValidator::TYPE_TIME,
+            'class' => 'yii\mongodb\validators\MongoDateValidator',
+            'type' => MongoDateValidator::TYPE_TIME,
         ],
         'default' => 'yii\validators\DefaultValueValidator',
         'double' => 'yii\validators\NumberValidator',
