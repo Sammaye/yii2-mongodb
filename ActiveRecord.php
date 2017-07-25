@@ -90,6 +90,11 @@ class ActiveRecord extends BaseActiveRecord
         $defaults = $this->attributeDefaults();
 
         foreach ($a as $k => $v) {
+            if (in_array($k, $this->primaryKey())) {
+                unset($a[$k]);
+                continue;
+            }
+
             if (is_string($v)) {
                 $v = trim($v);
             }
