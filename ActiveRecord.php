@@ -48,6 +48,32 @@ class ActiveRecord extends BaseActiveRecord
         return $validators;
     }
 
+    public function getDirtyAttributes($names = null)
+    {
+        $attributes = parent::getDirtyAttributes($names);
+        return $this->filterEmptyAttributes($attributes);
+    }
+
+    public function getAttributes($names = null, $except = [])
+    {
+        $attributes = parent::getAttributes($names, $except);
+        return $this->filterEmptyAttributes($attributes);
+    }
+
+    private function filterEmptyAttributes(array $a)
+    {
+        foreach ($a as $k => $v) {
+            if (is_string($v)) {
+                $v = trim($v);
+            }
+            if ($v === null || $v === [] || $v === '') {
+                $v = null;
+            }
+            $a[$k] = $v;
+        }
+        return $a;
+    }
+
     public function searchInternal($attributes, $options = [])
     {
         $this->setScenario(self::SCENARIO_SEARCH);
