@@ -60,6 +60,17 @@ class ActiveRecord extends BaseActiveRecord
         return $this->filterEmptyAttributes($attributes);
     }
 
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            foreach ($this->getAttributes() as $k => $v) {
+                $this->$k = $v;
+            }
+            return true;
+        }
+        return false;
+    }
+
     private function filterEmptyAttributes(array $a)
     {
         foreach ($a as $k => $v) {
