@@ -60,9 +60,23 @@ class ActiveRecord extends BaseActiveRecord
         return $this->filterEmptyAttributes($attributes);
     }
 
+    public function attributeDefaults()
+    {
+        return [];
+    }
+
+    public function init()
+    {
+        parent::init();
+
+        foreach($this->attributeDefaults() as $k => $v){
+            $this->$k = $v;
+        }
+    }
+
     public function beforeSave($insert)
     {
-        if (parent::beforeSave($insert)) {
+        if(parent::beforeSave($insert)) {
             foreach ($this->getAttributes() as $k => $v) {
                 $this->$k = $v;
             }
@@ -73,12 +87,14 @@ class ActiveRecord extends BaseActiveRecord
 
     private function filterEmptyAttributes(array $a)
     {
+        $defaults = $this->attributeDefaults();
+
         foreach ($a as $k => $v) {
             if (is_string($v)) {
                 $v = trim($v);
             }
-            if ($v === null || $v === [] || $v === '') {
-                $v = null;
+            if ($v === null || $v === '') {
+                $v = isset($defaults[$k]) ? $defaults[$k] : null;
             }
             $a[$k] = $v;
         }
