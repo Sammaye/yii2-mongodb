@@ -71,7 +71,7 @@ class EachValidator extends BaseEachValidator
         $value = $model->$attribute;
 
         if (is_string($value)) {
-            $value = explode($this->token, $value);
+            $value = $model->$attribute = explode($this->token, $value);
         }
 
         if (!is_array($value)) {
@@ -125,7 +125,6 @@ class EachValidator extends BaseEachValidator
                 }
             }
         }
-
         $model->$attribute = $filteredValue;
         $model->clearErrors($attribute);
         $model->addErrors([$attribute => $detectedErrors]);
