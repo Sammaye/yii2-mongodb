@@ -8,6 +8,7 @@
 namespace sammaye\mongodb;
 
 use sammaye\mongodb\validators\Validator;
+use yii\db\ActiveQueryInterface;
 use yii\base\DynamicModel as BaseDynamicModel;
 
 class DynamicModel extends BaseDynamicModel
@@ -42,6 +43,7 @@ class DynamicModel extends BaseDynamicModel
     public function setFormName($name)
     {
         $this->_formName = $name;
+        return $this;
     }
 
     public function createValidators()
@@ -93,6 +95,7 @@ class DynamicModel extends BaseDynamicModel
     public function addRelation($name, $type, $class, $link)
     {
         $this->_relations[$name] = [$type, $class, $link];
+        return $this;
     }
 
     public function getRelation($name, $throwException = true)
@@ -100,7 +103,6 @@ class DynamicModel extends BaseDynamicModel
         // the relation could be defined in a behavior
         list($type, $class, $link) = $this->_relations[$name];
         $relation = $this->$type($class, $link);
-
         if (!$relation instanceof ActiveQueryInterface) {
             if ($throwException) {
                 throw new InvalidParamException(get_class($this) . ' has no relation named "' . $name . '".');
@@ -108,13 +110,13 @@ class DynamicModel extends BaseDynamicModel
                 return null;
             }
         }
-
         return $relation;
     }
 
     public function populateRelation($name, $records)
     {
         $this->_related[$name] = $records;
+        return $this;
     }
 
     public function isRelationPopulated($name)
