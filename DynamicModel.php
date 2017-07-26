@@ -60,6 +60,14 @@ class DynamicModel extends BaseDynamicModel
         return $validators;
     }
 
+    public function addRule($attributes, $validator, $options = [])
+    {
+        $validators = $this->getValidators();
+        $validators->append(Validator::createValidator($validator, $this, (array) $attributes, $options));
+
+        return $this;
+    }
+
     public function hasOne($class, $link)
     {
         /* @var $class ActiveRecordInterface */
